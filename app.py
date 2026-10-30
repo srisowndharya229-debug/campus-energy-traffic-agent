@@ -160,3 +160,21 @@ with tabs[4]:
     df = pd.DataFrame(rows)
     st.dataframe(df.sort_values("moved", ascending=False), width="stretch", hide_index=True)
     st.caption("Simulated timetable. Changes are recommendations that need human approval.")
+with st.expander("How the agent works"):
+    st.markdown("""
+    **Think** → set target from the goal  
+    **Act** → call tools: find_peak_hours(), detect_energy_waste()  
+    **Plan** → re-time lectures with no clashes  
+    **Improve** → verify result, fall back to rule-based agent if needed
+    """)
+
+with st.expander("Data sources and assumptions"):
+    st.markdown("""
+    - Traffic: Metro Interstate Traffic Volume (proxy data)  
+    - Energy: NIT Puducherry hourly load (timestamps assumed 2023)  
+    - Timetable and rooms: simulated  
+    - Savings are estimates, not measured values
+    """)
+
+with st.expander("Constraints enforced"):
+    st.markdown("No room clash · No faculty clash · No student-group clash · Approved slots only")
